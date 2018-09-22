@@ -30,15 +30,17 @@ no
 
 8. Read Section C.2.3 and study rt_init_stack() and rt_get_PSP() functions source code in HAL_CM3.c file and answer the following questions.
 8.1 (2 points) Which registers are saved on the task stack?
-
-
+PSP and MSP.
+     
 8.2 (2 points) Which bits of which global variable contain the default task stack size in bytes?
-
+bits[2] to bits[15] in os_stackinfo 
 
 8.3 (2 points) How to determine the memory address of the first item that is pushed onto a task stack?
-
+the value of stk is the memory address of the first item pushed onto the stack
 
 8.4 (2 points) For a task that is not in RUNNING state, how to determine the memory address of the last item that is pushed onto its task stack (i.e. the top of the stack)?
+
+
 
 
 8.5 (2 points) For a task that is in RUNNING state, how to determine the memory address of the last item that is pushed onto its task stack (i.e. the top of the stack)?
