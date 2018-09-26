@@ -8,7 +8,7 @@ All of the active TCB in the system
 os_idle_TCB
 
 4. (1 point) Is the TCB of the os idle task an element in the os_active_TCB?
-yes
+no
 
 5. (1 point) Read rt_get_TID() code in rt_Task.c file. Assume that a non-idle task has a task ID of n, what is the index of this task’s TCB in the os_active_TCB array?
 n-1
