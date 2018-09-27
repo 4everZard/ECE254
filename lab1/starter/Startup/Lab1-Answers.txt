@@ -2,7 +2,7 @@
 os_maxtaskrun
 
 2. (1 point) What does os_active_TCB array in RTX_lib.c contain?
-All of the active TCB in the system
+All of the active task pointer.
 
 3. (1 point) Which global variable has the os idle task TCB information?
 os_idle_TCB
@@ -15,31 +15,31 @@ n-1
 
 6. Read the rt_TypeDef.h file and answer the following questions.
 6.1 (1 point) What is the purpose of the p_lnk variable in the struct OS_TCB?
-Link pointer for ready/sem. wait list 
+Link list pointer for ready/sem. wait list.
 
 6.2 (1 point) What is the purpose of tsk_stack and stack variables in struct OS_TCB?
-Current task Stack pointer (R13) & Pointer to Task Stack memory block
+Current task Stack pointer (R13) & Pointer to Task Stack memory block.
 
 6.3 (1 point) If you have a variable with type of struct OS_XCB *, will casting this variable to struct OS_TCB * keep the p_lnk field?
-no
+Yes, however you will loss access to the original content.
 
 7. Read the rt_Task.c and RTX_lib.c files and answer the following question.
 7.1 (2 points) What is the purpose of variables mp_tcb and mp_stk?
-     You may want to search the entire source code to further explore how these variables are set and used (see Figure 1.28).
-     Memory pool for TCB allocation   &   Memory pool for System stack allocation (+ os_idle_deamon)
+     You may want to search the entire source code to further explore how these variables are set and used.
+     Memory pool for TCB allocation   &   Memory pool for System stack allocation (+ os_idle_deamon).
 
 8. Read Section C.2.3 and study rt_init_stack() and rt_get_PSP() functions source code in HAL_CM3.c file and answer the following questions.
 8.1 (2 points) Which registers are saved on the task stack?
-PSP and MSP.
+Register R0-R15.
      
 8.2 (2 points) Which bits of which global variable contain the default task stack size in bytes?
 bits[2] to bits[15] in os_stackinfo 
 
 8.3 (2 points) How to determine the memory address of the first item that is pushed onto a task stack?
-the value of p_TCB->stack[OS_STKSIZE] is the memory address of the first item pushed onto the stack
+the value of p_TCB->stack[OS_STKSIZE-1] is the memory address of the first item pushed onto the stack
 
 8.4 (2 points) For a task that is not in RUNNING state, how to determine the memory address of the last item that is pushed onto its task stack (i.e. the top of the stack)?
-Check stack status register, if the task is running, then move to the next one until find a not running state task.
+p_TCB->tsk_stack
 
 8.5 (2 points) For a task that is in RUNNING state, how to determine the memory address of the last item that is pushed onto its task stack (i.e. the top of the stack)?
-Check stack status register, if the task is not running, then move to the next one until find a running state task.
+rt_get_PSP()
