@@ -36,12 +36,10 @@ PSP and MSP.
 bits[2] to bits[15] in os_stackinfo 
 
 8.3 (2 points) How to determine the memory address of the first item that is pushed onto a task stack?
-the value of stk is the memory address of the first item pushed onto the stack
+the value of p_TCB->stack[OS_STKSIZE] is the memory address of the first item pushed onto the stack
 
 8.4 (2 points) For a task that is not in RUNNING state, how to determine the memory address of the last item that is pushed onto its task stack (i.e. the top of the stack)?
-
-
-
+Check stack status register, if the task is running, then move to the next one until find a not running state task.
 
 8.5 (2 points) For a task that is in RUNNING state, how to determine the memory address of the last item that is pushed onto its task stack (i.e. the top of the stack)?
-
+Check stack status register, if the task is not running, then move to the next one until find a running state task.
