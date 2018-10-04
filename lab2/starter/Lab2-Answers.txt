@@ -2,42 +2,42 @@
 1.1 (1 point) In an RTX application, how to declare a memory pool named "mympool" that has 20 blocks 
     of memory with block size of 12 bytes?
 -----------------------------------------------------------------------------------------------------
-
+_declare_box(mpool,12,20);
 
 1.2 (1 point) Write one line of code to initialize the "mympool".
 -----------------------------------------------------------------------------------------------------
-
+_init_box(mpool, sizeof(mpool), 12);
 
 1.3 (1 point) What is the corresponding kernel function of _alloc_box()?
 -----------------------------------------------------------------------------------------------------
-
+rt_alloc_box()
 
 1.4 (1 point) What is the corresponding kernel function of _free_box()?
 -----------------------------------------------------------------------------------------------------
-
+rt_free_box()
 
 2. (2 points) Read the rt_TypeDef.h file. What is the purpose of ret_val in the struct OS_TCB?
 -----------------------------------------------------------------------------------------------------
-
+Return value upon completion of a wait
 
 3. Read the rt_List.c file and answer the following questions:
     You may want to further explore other functions in the rt_List.c file.
 3.1 (2 points) What does the rt_put_prio() function do?
 -----------------------------------------------------------------------------------------------------
-
+Put task identified with "p_task" into list ordered by priority, list has always an element at end with a priority less than "p_task->prio"
 
 3.2 (2 points) What does the rt_get_first() function do?
 -----------------------------------------------------------------------------------------------------
-
+Get task at head of list: it is the task with highest priority.
 
 4. Read the rt_Task.c file and answer the following questions:
 4.1 (2 points) What does the rt_block() function do?
 -----------------------------------------------------------------------------------------------------
-
+Block running task and choose next ready task. 
 
 4.2 (2 points) What does the rt_dispatch() function do?
 -----------------------------------------------------------------------------------------------------
-
+Dispatch next task if any identified or dispatch highest ready task, after that, put next task into ready list.
 
 5. (4 points) How to set the return value of a function becomes a bit tricky when context
     switching is involved. One such example is os_mbx_wait() function. This function
@@ -56,4 +56,4 @@
     can stay. There are two global queues for now in the kernel and they are os_rdy and
     os_dly. What data structure do these two queues use?
 -----------------------------------------------------------------------------------------------------
-
+OS_XCB is the data structure for both queues.
