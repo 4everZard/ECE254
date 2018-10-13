@@ -51,6 +51,9 @@ Dispatch next task if any identified or dispatch highest ready task, after that,
     assignment.
 -----------------------------------------------------------------------------------------------------
 
+When rt_mbx_wait() is called upon a task waiting to send a message, the task is then blocked and the return value
+OS_R_MBX is not used until the os unblocked the task. However, when a task is waiting for a message and the 
+rt_mbx_send is called, the task is unblocked and OS_R_MBX is used to tell the operating system that the task is ready.
 
 6. (2 points) To block a task, you will need to create a queue that the blocked tasks
     can stay. There are two global queues for now in the kernel and they are os_rdy and
